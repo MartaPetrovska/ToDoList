@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class TaskManager{
   //MVP: Minimum Viable Product
-  //Be able to add a Task
-  //Have a list of all the tasks
+  //Be able to add a Task -> DONE
+  //Have a list of all the tasks -> getTasks();
   //Set a task as done, by Task name
 
   private ArrayList<Task> tasks = new ArrayList<Task>();
@@ -15,8 +15,15 @@ public class TaskManager{
     tasks.add(task);
   }
 
-  public ArrayList<Task> getTasks(){ // this is called a getter (using because ArrayList is private, which means that other classes can't mess with the data. )
+  public ArrayList<Task> getTasks(){
     return tasks;
+  }
+
+  public void setTaskAsDone(String taskName){
+    tasks.stream()
+      .filter(x -> x.name.equals(taskName))
+      .findFirst()
+      .ifPresent(x -> x.isDone = true);
   }
 
   //BONUS:
